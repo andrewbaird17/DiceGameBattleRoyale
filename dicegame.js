@@ -1,14 +1,15 @@
 "use strict";
 
 var shootoutRolls = [rollOne, rollTwo, rollThree, rollFour]
-var player = {totalDice,shootoutRolls}
-var players = [player1, player2, player3, player4, player5, player6, player7, player8, player9, player10]
+var player = {totalDice: 0,shootoutRolls}
+var players = [player, player, player, player, player, player, player, player, player, player]
+var roundNumber = 1;
 function runGame(){
-    let roundNum = 1;
     if (players.length > 6){
+        // loop twice and find the player with the lowest totalDice and remove them each time
 
     } else if(players.length > 2){
-
+        // remove the player with the lowest totalDice and remove them
 
     } else{
 
@@ -38,7 +39,7 @@ function addDice(d4,d6,d8,d10,d12,d20){
 
 function shootoutRoll(){
     let rollOne = getRndNum(1,20);
-    shootoutRolls[0] = rollOne;
+    player.shootoutRolls[0] = rollOne;
     let rollTwo = getRndNum(1,20);
     shootoutRolls[1] = rollTwo;
     let rollThree = getRndNum(1,20);
