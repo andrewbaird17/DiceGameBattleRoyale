@@ -33,12 +33,18 @@ function startRound(){
 }
 
 function compareResults(){
+    let j;
     for(i=0; i < players.length - 1;i++){
-        if (i !== players.length - 1){
-            
+        if(i === 0){
+            j = i;
+        }
+        else if (i !== players.length - 1){
+            if(players[i].totalDice < players[j].totalDice){
+                j = i;
+            }
         }
     }
-
+    return j;
 }
 
 function removePlayer(indexNum){
