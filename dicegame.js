@@ -1,22 +1,22 @@
 "use strict";
 
-const players = [player1, player2, player3, player4, player5, player6, player7, player8, player9, player10]
+var shootoutRolls = [rollOne, rollTwo, rollThree, rollFour]
+var player = {totalDice,shootoutRolls}
+var players = [player1, player2, player3, player4, player5, player6, player7, player8, player9, player10]
 function runGame(){
-    for(let i = 1; i <= 6; i++){
-        if (i <= 3){
+    let roundNum = 1;
+    if (players.length > 6){
 
-        }
-        else if(i==4 || i==5){
+    } else if(players.length > 2){
 
-        }
-        else{
 
-        }
+    } else{
+
     }
 }
 
 function startRound(){
-
+    players.forEach(rollDiceSet)
 }
 
 function rollDiceSet(){
@@ -31,11 +31,20 @@ function rollDiceSet(){
 }
 
 function addDice(d4,d6,d8,d10,d12,d20){
-
+    var result;
+    result = d4 + d6 + d8 + d10 + d12 + d20;
+    return result 
 }
 
 function shootoutRoll(){
-
+    let rollOne = getRndNum(1,20);
+    shootoutRolls[0] = rollOne;
+    let rollTwo = getRndNum(1,20);
+    shootoutRolls[1] = rollTwo;
+    let rollThree = getRndNum(1,20);
+    shootoutRolls[2] = rollThree;
+    let rollFour = getRndNum(1,20);
+    shootoutRolls[3] = rollFour;
 }
 
 function getRndNum(min,max){
