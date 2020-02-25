@@ -1,40 +1,71 @@
 "use strict";
 
-var shootoutRolls = [rollOne, rollTwo, rollThree, rollFour]
-var player = {totalDice: 0,shootoutRolls}
-var players = [player, player, player, player, player, player, player, player, player, player]
+
+var roll = 0;
+var shootoutRolls = [roll, roll, roll, roll];
+
+class player {
+    constructor(){
+        this.totalDice = 0;
+    }
+}
+var player1 = new player;
+var player2 = new player;
+var player3 = new player;
+var player4 = new player;
+var player5 = new player;
+var player6 = new player;
+var player7 = new player;
+var player8 = new player;
+var player9 = new player;
+var player10 = new player;
+var players = [player1, player2, player3, player4, player5, player6, player7, player8, player9, player10];
 var roundNumber = 1;
 
 function startRound(){
+    document.getElementById("demoDiv").innerHTML = "Round " + roundNumber;
+    document.getElementById("playersRemaining").innerHTML = "Players Remaning " + (players.length);
+    
     if (players.length >= 6){
         // loop twice and find the player with the lowest totalDice and remove them each time
-        for (player in players){
-            player.totalDice = rollDiceSet();
+        for(let i = 0; i < players.length; i++){
+            let rollTotal = rollDiceSet();
+            console.log(rollTotal);
+            players[i].totalDice = parseInt(rollTotal);
         }
         let indexNum = compareResults();
         removePlayer(indexNum);
         let indexNum2 = compareResults();
         removePlayer(indexNum2);
-        round++
+        roundNumber++;
     } else if(players.length > 2){
         // remove the player with the lowest totalDice and remove them
-        for (player in players){
-            player.totalDice = rollDiceSet();
+        for(let i = 0; i < players.length; i++){
+            let rollTotal = rollDiceSet();
+            console.log(rollTotal);
+            players[i].totalDice = parseInt(rollTotal);
         }
         let indexNum = compareResults();
         removePlayer(indexNum);
-        round++;
+        roundNumber++;
     } else{
-        for (player in players){
-            player.totalDice = player.shootoutRoll();
+        for(let i = 0; i < players.length; i++){
+            let rollTotal = shootoutRoll();
+            console.log(rollTotal);
+            players[i].totalDice = parseInt(rollTotal);
         }
-
+        let loser = compareResults();
+        if(loser === 0 ){
+            let winner = 1;
+        }else{
+            let winner = 0;
+        }
     }
 }
 
 function compareResults(){
     let j;
-    for(i=0; i < players.length - 1;i++){
+    for(let i=0; i < players.length - 1;i++){
         if(i === 0){
             j = i;
         }
