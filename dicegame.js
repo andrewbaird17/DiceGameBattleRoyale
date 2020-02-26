@@ -20,8 +20,9 @@ var players = [player1, player2, player3, player4, player5, player6, player7, pl
 var roundNumber = 1;
 
 function startRound(){
-    document.getElementById("demoDiv").innerHTML = "Round " + roundNumber;
-    document.getElementById("playersRemaining").innerHTML = "Players Remaning " + (players.length);
+    document.getElementById("roundNumber").innerHTML = "Round " + roundNumber;
+    document.getElementById("playersRemaining").innerHTML = "Players Remaining: " + displayPlayers();
+    document.getElementById("tiebreaker").innerHTML = "";
     
     if (players.length >= 6){
         // loop twice and find the player with the lowest totalDice and remove them each time
@@ -34,6 +35,7 @@ function startRound(){
         removePlayer(indexNum);
         let indexNum2 = compareResults();
         removePlayer(indexNum2);
+        document.getElementById("playersRemaining").innerHTML = "Players Remaining: " + displayPlayers();
         roundNumber++;
     } else if(players.length > 2){
         // remove the player with the lowest totalDice and remove them
@@ -44,6 +46,7 @@ function startRound(){
         }
         let indexNum = compareResults();
         removePlayer(indexNum);
+        document.getElementById("playersRemaining").innerHTML = "Players Remaining: " + displayPlayers();
         roundNumber++;
     } else if(players.length === 2){
         for(let i = 0; i < players.length; i++){
@@ -53,13 +56,21 @@ function startRound(){
         }
         let loser = shootoutCompareResults();
         if(loser === "tie" ){
-            alert("It's a tie! Roll again to determine the winner!");
+            document.getElementById("tiebreaker").innerHTML = "It's a tie! Start a Tie-Breaker Round to determine the winner!";
             roundNumber++;
         } else{
             removePlayer(loser);
-            alert(players[0].name + " Wins!")
+            document.getElementById("playersRemaining").innerHTML = displayPlayers() + "Wins!";
         }
     }
+}
+
+function displayPlayers(){
+    let playersLeft = "";
+    for(let i = 0; i < players.length;i++){
+        playersLeft += players[i].name + " ";
+    }
+    return playersLeft;
 }
 
 function shootoutCompareResults(){
@@ -80,7 +91,7 @@ function shootoutCompareResults(){
 
 function compareResults(){
     let j;
-    for(let i=0; i < players.length - 1;i++){
+    for(let i=0; i < players.length;i++){
         if(i === 0){
             j = i;
         } else {
