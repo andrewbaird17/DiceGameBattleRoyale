@@ -83,8 +83,7 @@ function compareResults(){
     for(let i=0; i < players.length - 1;i++){
         if(i === 0){
             j = i;
-        }
-        else if (i !== players.length - 1){
+        } else {
             if(players[i].totalDice < players[j].totalDice){
                 j = i;
             }
