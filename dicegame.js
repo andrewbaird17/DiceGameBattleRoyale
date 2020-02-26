@@ -1,20 +1,21 @@
 "use strict";
 
-class player {
-    constructor(){
+class Player {
+    constructor(name){
         this.totalDice = 0;
+        this.name = name;
     }
 }
-var player1 = new player;
-var player2 = new player;
-var player3 = new player;
-var player4 = new player;
-var player5 = new player;
-var player6 = new player;
-var player7 = new player;
-var player8 = new player;
-var player9 = new player;
-var player10 = new player;
+var player1 = new Player("Player 1");
+var player2 = new Player("Player 2");
+var player3 = new Player("Player 3");
+var player4 = new Player("Player 4");
+var player5 = new Player("Player 5");
+var player6 = new Player("Player 6");
+var player7 = new Player("Player 7");
+var player8 = new Player("Player 8");
+var player9 = new Player("Player 9");
+var player10 = new Player("Player 10");
 var players = [player1, player2, player3, player4, player5, player6, player7, player8, player9, player10];
 var roundNumber = 1;
 
@@ -44,21 +45,19 @@ function startRound(){
         let indexNum = compareResults();
         removePlayer(indexNum);
         roundNumber++;
-    } else{
+    } else if(players.length === 2){
         for(let i = 0; i < players.length; i++){
             let rollTotal = shootoutRoll();
             console.log(rollTotal);
             players[i].totalDice = parseInt(rollTotal);
         }
         let loser = shootoutCompareResults();
-        if(loser === 0 ){
-            let winner = 1;
-            alert(players[winner] +"Wins!");
-        } else if( loser === 1){
-            let winner = 0;
-            alert(players[winner] +"Wins!");
-        } else{
+        if(loser === "tie" ){
             alert("It's a tie! Roll again to determine the winner!");
+            roundNumber++;
+        } else{
+            removePlayer(loser);
+            alert(players[0].name + " Wins!")
         }
     }
 }
