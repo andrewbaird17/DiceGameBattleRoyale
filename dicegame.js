@@ -1,9 +1,5 @@
 "use strict";
 
-
-var roll = 0;
-var shootoutRolls = [roll, roll, roll, roll];
-
 class player {
     constructor(){
         this.totalDice = 0;
@@ -54,13 +50,33 @@ function startRound(){
             console.log(rollTotal);
             players[i].totalDice = parseInt(rollTotal);
         }
-        let loser = compareResults();
+        let loser = shootoutCompareResults();
         if(loser === 0 ){
             let winner = 1;
-        }else{
+            alert(players[winner] +"Wins!");
+        } else if( loser === 1){
             let winner = 0;
+            alert(players[winner] +"Wins!");
+        } else{
+            alert("It's a tie! Roll again to determine the winner!");
         }
     }
+}
+
+function shootoutCompareResults(){
+    let j;
+    for (let i = 0; i < 2; i++){
+        if(i === 0){
+            j = i;
+        } else if (i === 1){
+            if(players[i].totalDice < players[j].totalDice){
+                j = i;
+            } else if(players[i].totalDice === players[j].totalDice){
+                j = "tie";
+            }
+        }
+    }
+    return j;
 }
 
 function compareResults(){
@@ -99,6 +115,8 @@ function addDice(d4,d6,d8,d10,d12,d20){
 }
 
 function shootoutRoll(){
+    var roll = 0;
+    var shootoutRolls = [roll, roll, roll, roll];
     let rollOne = getRndNum(1,20);
     shootoutRolls[0] = rollOne;
     let rollTwo = getRndNum(1,20);
