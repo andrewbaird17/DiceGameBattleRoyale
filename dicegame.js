@@ -20,6 +20,10 @@ var players = [player1, player2, player3, player4, player5, player6, player7, pl
 var roundNumber = 1;
 
 document.getElementById("playersRemaining").innerHTML = "Players Remaining: " + displayPlayers();
+document.getElementById("rules1").innerHTML = "10 players roll a set of dice in a 6-round game. At the end of a player's turn, all of their rolls from their set of die is totaled up. In the first three rounds, the lowest two players each round are removed from the game (4 left). In rounds 4 and 5, the lowest player is removed from the game (2 left). In the 6th and final round, a shootout occurs between the final two players.";
+document.getElementById("rules2").innerHTML = "Set of Dice: 4-sided, 6-sided, 8-sided, 10-sided, 12-sided, 20-sided."; 
+document.getElementById("rules3").innerHTML =" Dice Shootout Rules: Each player rolls a d20 four times, recording each result, and then rolls a d4 to determine which of the four d20 results they get to use. The higher result is the winner of the Battle Royal. In the event of a tie, repeat this process.";
+
 
 function startRound(){
     document.getElementById("roundNumber").innerHTML = "Round " + roundNumber + " Results";
@@ -33,8 +37,7 @@ function startRound(){
         for(let i = 0; i < players.length; i++){
             let rollTotal = rollDiceSet();
             console.log(rollTotal);
-            players[i].totalDice = parseInt(rollTotal);
-            document.getElementById("Player").innerHTML = players[i].name + " rolled a " + players[i].totalDice; 
+            players[i].totalDice = parseInt(rollTotal); 
         }
         let indexNum = compareResults();
         removePlayer(indexNum);
@@ -71,9 +74,9 @@ function startRound(){
 }
 
 function displayPlayers(){
-    let playersLeft = "";
+    let playersLeft = "|| ";
     for(let i = 0; i < players.length;i++){
-        playersLeft += players[i].name + " ";
+        playersLeft += players[i].name + " Rolled "+ players[i].totalDice + " || ";
     }
     return playersLeft;
 }
