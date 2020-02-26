@@ -19,8 +19,10 @@ var player10 = new Player("Player 10");
 var players = [player1, player2, player3, player4, player5, player6, player7, player8, player9, player10];
 var roundNumber = 1;
 
+document.getElementById("playersRemaining").innerHTML = "Players Remaining: " + displayPlayers();
+
 function startRound(){
-    document.getElementById("roundNumber").innerHTML = "Round " + roundNumber;
+    document.getElementById("roundNumber").innerHTML = "Round " + roundNumber + " Results";
     if (players.length !== 1){
         document.getElementById("playersRemaining").innerHTML = "Players Remaining: " + displayPlayers(); 
     }
@@ -32,6 +34,7 @@ function startRound(){
             let rollTotal = rollDiceSet();
             console.log(rollTotal);
             players[i].totalDice = parseInt(rollTotal);
+            document.getElementById("Player").innerHTML = players[i].name + " rolled a " + players[i].totalDice; 
         }
         let indexNum = compareResults();
         removePlayer(indexNum);
@@ -62,7 +65,7 @@ function startRound(){
             roundNumber++;
         } else{
             removePlayer(loser);
-            document.getElementById("playersRemaining").innerHTML = displayPlayers() + "Wins!";
+            document.getElementById("playersRemaining").innerHTML = displayPlayers() + " Wins!";
         }
     }
 }
