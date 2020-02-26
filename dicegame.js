@@ -21,7 +21,9 @@ var roundNumber = 1;
 
 function startRound(){
     document.getElementById("roundNumber").innerHTML = "Round " + roundNumber;
-    document.getElementById("playersRemaining").innerHTML = "Players Remaining: " + displayPlayers();
+    if (players.length !== 1){
+        document.getElementById("playersRemaining").innerHTML = "Players Remaining: " + displayPlayers(); 
+    }
     document.getElementById("tiebreaker").innerHTML = "";
     
     if (players.length >= 6){
